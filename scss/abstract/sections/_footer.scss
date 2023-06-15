@@ -1,0 +1,35 @@
+@use '../config' as *;
+footer {
+  $bg: lighten($clr-primary500, 24%);
+  @include dynamic-text-color($bg);
+  @include flexBox(row,initial,0);
+  min-height: 20rem;
+  align-items: center;
+
+  h3 {
+    text-align: center;
+    font-weight: 700;
+    font-size: $sub-heading;
+    margin-bottom: 2.5rem;
+  }
+  a {
+    font-size: 14px
+  }
+}
+
+.footer-container {
+  @include container(90%,400px);
+
+  .links {
+    text-align: center;
+    @include flexBox(row,space-around,0);
+    margin-bottom: 5rem;
+  }
+
+  .icons {
+    @include flexBox(row,center,1.5rem);
+    img {
+      width: 26px;
+    }
+  }
+}

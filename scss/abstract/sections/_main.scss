@@ -1,0 +1,106 @@
+@use '../config' as *;
+#hero {
+  position: relative;
+
+  .hero-container{
+    position: absolute;
+    inset: 2rem 0 auto 0;
+    @include container(90%,1200px);
+    color: $clr-neutral100;
+  }
+}
+
+.hero-container {
+  .menu-toggle {
+    z-index: 1000;
+
+    &::after {
+      @include icons("\f0c9",23px);
+    }
+
+    &.active::after {
+      content: "\f00d";
+    }
+  }
+
+  nav {
+    display: none;
+    color: $clr-neutral100;
+  }
+
+  ul {
+    @include flexBox(row,initial,1rem 2rem);
+    font-size: 16px;
+  
+    a {
+      @include hover($clr-neutral100);
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: background-color 0.6s ease;
+      @include dynamic-text-color($clr-neutral100);
+      font-family: $ff-title;
+      &:hover,&:focus {
+        @include dynamic-text-color($clr-primary600);
+      }
+    }
+  }
+}
+
+@media (max-width: 40rem) {
+  .hero-container{
+    nav.active {
+      display: block;
+      position: fixed;
+      inset: 0;
+      backdrop-filter: blur(4px);
+      text-align: center;
+      z-index: 100;
+    }
+  
+    ul {
+      @include dynamic-text-color($clr-neutral100);
+      @include container(84%,400px);
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 5.5rem;
+      padding: 1.5rem;
+      min-height: 18rem;
+    
+      a {
+        @include hover($clr-neutral300);
+      }
+
+      button {
+        @include dynamic-text-color($clr-primary400);
+      }
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  .hero-container {
+    .menu-toggle {
+      display: none;
+    }
+  
+    nav {
+      display: block;
+    }
+  }
+}
+
+.hero-container{
+  .header-nav {
+    @include flexBox(row,space-between);
+    margin-bottom: 5.5rem;
+    min-height: 3rem;
+  }
+  h1 {
+    text-align: center;
+    @include container(86%,600px);
+    line-height: 1.1;
+  }
+}

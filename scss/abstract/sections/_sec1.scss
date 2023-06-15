@@ -1,0 +1,88 @@
+@use '../config' as *;
+.sec1 {
+  text-align: center;
+  @include container(100%,1500px);
+  .wrapper1 {
+    .inner-container {
+      @include container(86%,500px);
+    }
+  
+    p,
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    a{
+      font-family: $ff-title;
+      font-weight: 700;
+    }
+  }
+  
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.sec1 .wrapper1 {
+  article {
+    flex: 1;
+    min-height: 22rem;
+    @include flexBox(row);
+  }
+}
+
+@media (min-width: 46rem) {
+  .sec1 .wrapper1 {
+    text-align: initial;
+    :nth-child(1) {
+      flex-direction: row-reverse;
+    }
+  
+    li {
+      display: flex;
+      min-height: 1rem;
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  
+    picture {
+      flex: 1;
+    }
+  }
+}
+
+.sec1 .wrapper2 {
+  p {
+    color: $clr-primary700;
+  }
+  li {
+    position: relative;
+  }
+
+  h2 {
+    margin-bottom: 2rem
+  }
+
+  figcaption {
+    @include container(86%,500px);
+    position: absolute;
+    inset: auto 0 4rem 0;
+  }
+}
+
+@media (min-width: 46rem) {
+  .sec1 .wrapper2 {
+    display: flex;
+    > * {
+      flex: 1;
+    }
+  }
+}

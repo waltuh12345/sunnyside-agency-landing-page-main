@@ -1,0 +1,155 @@
+//===FONTS===//
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap');
+
+
+
+$ff: 'Barlow', sans-serif;
+$ff-title: 'Fraunces', serif;
+
+
+/* Step -5: 11.25px → 11.80px */
+$secondary-text: clamp(0.70rem, calc(0.53rem + 0.55vw), 0.74rem);
+
+/* Step -4: 13.50px → 14.75px */
+$primary-text: clamp(0.84rem, calc(0.45rem + 1.25vw), 0.92rem);
+
+/* Step -3: 16.20px → 18.43px */
+$sub-title: clamp(1.01rem, calc(0.32rem + 2.23vw), 1.15rem);
+
+/* Step -2: 19.44px → 23.04px */
+$title: clamp(1.22rem, calc(0.09rem + 3.60vw), 1.44rem);
+
+/* Step -1: 23.33px → 28.80px */
+$sub-heading: clamp(1.46rem, calc(-0.25rem + 5.47vw), 1.80rem);
+
+/* Step 0: 28.00px → 36.00px */
+$heading: clamp(1.75rem, calc(-0.75rem + 8.00vw), 2.25rem);
+
+//===ICONS=====//
+.icon::after,
+.icon::before {
+  /* removed font- based rules */
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: var(--fa-font-solid);
+}
+//====COLORS====//
+
+$clr-primary300: hsl(7, 99%, 70%);
+$clr-primary400: hsl(51, 100%, 49%);
+$clr-primary500: hsl(168, 34%, 41%);
+$clr-primary600: hsl(198, 62%, 26%);
+$clr-primary700: hsl(167, 40%, 24%);
+
+$clr-neutral100: hsl(0, 0%, 100%);
+$clr-neutral200: hsl(210, 4%, 67%);
+$clr-neutral300: hsl(232, 10%, 55%);
+$clr-neutral400: hsl(213, 9%, 39%);
+$clr-neutral500: hsl(212, 27%, 19%);
+
+
+//mixins
+
+@mixin dynamic-text-color($background-color) {
+  background-color: $background-color;
+  $threshold: 80;
+
+  @if (lightness($background-color) < $threshold) {
+    color: $clr-neutral100; // Dark background, use light text color
+  } @else {
+    color: $clr-neutral500; // Light background, use dark text color
+  }
+}
+
+@mixin hover($color) {
+  color: $color;
+  transition: .6s ease-in-out;
+
+  &:hover {
+    @if (lightness($color) < 70) {
+      color: lighten($color, 20%);
+    } @else {
+      color: darken($color, 15%);
+    }
+  }
+}
+
+@mixin flexBox($value1,$value2: initial,$gap: initial) {
+  display: flex;
+  flex-direction: $value1;
+  justify-content: $value2;
+  gap: $gap;
+
+  @if ($value1 == row) {
+    align-items: center;
+  }
+}
+
+@mixin icons($value1,$value2) {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font: var(--fa-font-solid);
+  content: $value1;
+  font-size: $value2;
+}
+
+@mixin container($num1,$num2) {
+  width: min($num1,$num2);
+  margin-inline: auto;
+}
+
+
+//styles
+
+body {
+  @include dynamic-text-color($clr-neutral100);
+  font-family: $ff;
+  font-weight: 600;
+  font-size: 16px;
+  padding-bottom: 200vh;
+
+  h1 {
+    font-family: $ff-title;
+    font-weight: 900;
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: $sub-heading;
+  }
+
+  h3 {
+    font-size: $title;
+  }
+
+  h4 {
+    font-size: $sub-title;
+  }
+
+  h2,h3,h4 {
+    font-family: $ff-title;
+    font-weight: 700;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    border: none;
+    inset: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+  }
+  
+  p{
+    color: $clr-neutral200;
+  }
+}
+
+
